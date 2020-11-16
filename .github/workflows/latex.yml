@@ -1,0 +1,17 @@
+name: CI
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  CI:
+    runs-on: ubuntu-20.04
+    container: fedora:rawhide
+    steps:
+      - name: Test latex
+        run: |
+          sudo dnf -y update
+          sudo dnf -y install texlive
+          printf '\\documentclass{article}\n\\begin{document}\ntest\n\\end{document}' > test.tex
+          latex test.tex
