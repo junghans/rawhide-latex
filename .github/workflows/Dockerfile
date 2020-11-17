@@ -1,7 +1,12 @@
 FROM registry.fedoraproject.org/fedora:rawhide
 RUN dnf -y update
 RUN dnf -y install texlive
-RUN /usr/bin/kpsewhich -debug 2 fmtutil.cnf
+RUN rpm -q rpm
+RUN ls -l /usr/bin/kpsewhich
+RUN /usr/share/texlive/texmf-dist/scripts/texlive/mktexlsr --verbose
+RUN ls -l /usr/share/texlive/texmf-dist/ls-R
+RUN which kpsewhich
+RUN kpsewhich -debug 2 fmtutil.cnf
 RUN cat /usr/share/texlive/texmf-dist/web2c/fmtutil.cnf
 RUN /usr/bin/fmtutil-sys --all || :
 RUN printf '\\documentclass{article}\n\\begin{document}\ntest\n\\end{document}' > test.tex
