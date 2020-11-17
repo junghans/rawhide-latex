@@ -2,7 +2,7 @@ FROM registry.fedoraproject.org/fedora:rawhide
 RUN dnf -y update
 RUN dnf -y install texlive
 RUN ls -l /usr/bin/kpsewhich
-RUN ls -l /
+RUN /usr/share/texlive/texmf-dist/scripts/texlive/mktexlsr --verbose
 RUN ls -l /usr/share/texlive/texmf-dist/ls-R
 RUN which kpsewhich
 RUN kpsewhich -debug 2 fmtutil.cnf
