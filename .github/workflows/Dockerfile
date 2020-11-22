@@ -1,8 +1,5 @@
 FROM registry.fedoraproject.org/fedora:rawhide
 RUN dnf -y update
 RUN dnf -y install texlive
-RUN /usr/bin/kpsewhich -debug 2 fmtutil.cnf
-RUN cat /usr/share/texlive/texmf-dist/web2c/fmtutil.cnf
-RUN /usr/bin/fmtutil-sys --all || :
-RUN printf '\\documentclass{article}\n\\begin{document}\ntest\n\\end{document}' > test.tex
-RUN latex test.tex
+RUN ls -l /usr/share/texlive/
+RUN test -w /usr/share/texlive/texmf-config/
