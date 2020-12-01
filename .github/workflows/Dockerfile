@@ -1,6 +1,6 @@
 FROM registry.fedoraproject.org/fedora:rawhide
 RUN dnf -y update
-RUN dnf -y install texlive
-RUN ls -l /usr/share/texlive/
-RUN whoami
-RUN test -w /usr/share/texlive/texmf-config/
+RUN dnf -y install git
+RUN git clone https://github.com/votca/csg
+RUN ls -l csg/share/scripts/inverse/prepare_generic.sh
+RUN test -x csg/share/scripts/inverse/prepare_generic.sh
